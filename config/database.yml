@@ -41,3 +41,12 @@ test:
   timeout: 5000
   username: claseb
   password: clasebdeploy
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: claseb_dev
+  pool: 5
+  timeout: 5000
+  username: claseb
+  password: clasebdeploy
