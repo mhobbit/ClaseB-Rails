@@ -61,7 +61,8 @@ group :development do
 end
 
 gem 'puma'
-
+gem 'execjs' 
+gem 'therubyracer
 
 end
 
