@@ -62,7 +62,7 @@ end
 
 gem 'puma'
 gem 'execjs' 
-gem 'therubyracer
+gem 'therubyracer'
 
 end
 
