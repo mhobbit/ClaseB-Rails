@@ -39,5 +39,5 @@ test:
   database: claseb_dev
   pool: 5
   timeout: 5000
-  username: claseb_dev
-  password: claseb
+  username: claseb
+  password: clasebdeploy
