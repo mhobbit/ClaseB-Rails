@@ -36,7 +36,7 @@ development:
 test:
   adapter: postgresql
   encoding: utf8
-  database: claseb_dev
+  database: claseb_test
   pool: 5
   timeout: 5000
   username: claseb
@@ -45,8 +45,10 @@ test:
 production:
   adapter: postgresql
   encoding: utf8
-  database: claseb_dev
+  database: claseb
   pool: 5
   timeout: 5000
   username: claseb
-  password: clasebdeploy
+  password: ClaseB123
+  host: localhost
+
