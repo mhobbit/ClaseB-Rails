@@ -1,14 +1,109 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ClasebRails</title>
+  <head>  <title>ClasebRails</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-</head>
-<body>
+  </head>
+  <body class="hold-transition skin-yellow-light fixed">
+    <div class="wrapper">
 
-<%= yield %>
+      <header class="main-header">
+        <!-- Logo -->
+        <%= link_to root_url, :class => 'logo' do %>
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>C</b>B</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg">
+	          <%= image_tag(image_url('claseb.svg'), :alt => 'ClaseB', :height => '35px') %>
+          </span>
+      	<% end %>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="hidden-xs">Logged in as <strong><%= current_user.email %></strong>.</span>
 
-</body>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Mobile_black_bare_160X160.png" class="img-circle" alt="User Image">
+                    <p>
+                      <%= current_user.email %>
+                      <small>Registrado desde: <%= current_user.created_at.to_date.to_s %></small>
+                    </p>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+        						  <%= link_to 'Editar Perfil', edit_user_registration_path, :class => 'btn btn-default btn-flat' %> 
+                    </div>
+                    <div class="pull-right">
+										  <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-flat'  %>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+						<% else %>
+						<li>
+						  <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %>
+						</li>
+						<li>  
+						  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+						</li>
+						<% end %>
+
+
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <%= render :partial => "layouts/sidebar" %>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+	      <% if notice %>
+		      <div class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-info"></i>Información</h4>
+            <%= notice %>
+          </div>
+        <% end %>
+
+	      <% if alert %>
+					<div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-warning"></i>Advertencia</h4>
+            <%= alert %>
+          </div>
+        <% end %>
+
+
+      	<%= yield %>
+
+      </div>
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> alpha
+        </div>
+        <strong>Copyright &copy; 2015 <a href="http://dribyte.cl">Dribyte</a>.</strong> Todos los derechos reservados.
+      </footer>
+
+    </div><!-- ./wrapper -->
+  </body>
 </html>
