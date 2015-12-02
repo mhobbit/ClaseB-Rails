@@ -61,5 +61,3 @@ gem 'rails-i18n'
 gem 'puma'
 gem 'execjs' 
 gem 'therubyracer'
-
-
