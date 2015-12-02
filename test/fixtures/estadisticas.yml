@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  velocidad: 1.5
+  tiempoVelocidad: 1.5
+  velocidadMedia: 1.5
+  velocidadMaxima: 1.5
+  velocidadMinima: 1.5
+  ruta: MyText
+  cambiosVelocidad: 1.5
+  cambiosRpm: 1
+
+two:
+  velocidad: 1.5
+  tiempoVelocidad: 1.5
+  velocidadMedia: 1.5
+  velocidadMaxima: 1.5
+  velocidadMinima: 1.5
+  ruta: MyText
+  cambiosVelocidad: 1.5
+  cambiosRpm: 1

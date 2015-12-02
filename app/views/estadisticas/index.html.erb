@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Estadisticas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Velocidad</th>
+      <th>Tiempovelocidad</th>
+      <th>Velocidadmedia</th>
+      <th>Velocidadmaxima</th>
+      <th>Velocidadminima</th>
+      <th>Ruta</th>
+      <th>Cambiosvelocidad</th>
+      <th>Cambiosrpm</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @estadisticas.each do |estadistica| %>
+      <tr>
+        <td><%= estadistica.velocidad %></td>
+        <td><%= estadistica.tiempoVelocidad %></td>
+        <td><%= estadistica.velocidadMedia %></td>
+        <td><%= estadistica.velocidadMaxima %></td>
+        <td><%= estadistica.velocidadMinima %></td>
+        <td><%= estadistica.ruta %></td>
+        <td><%= estadistica.cambiosVelocidad %></td>
+        <td><%= estadistica.cambiosRpm %></td>
+        <td><%= link_to 'Show', estadistica %></td>
+        <td><%= link_to 'Edit', edit_estadistica_path(estadistica) %></td>
+        <td><%= link_to 'Destroy', estadistica, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Estadistica', new_estadistica_path %>

@@ -1,0 +1,49 @@
+<%= form_for(@estadistica) do |f| %>
+  <% if @estadistica.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@estadistica.errors.count, "error") %> prohibited this estadistica from being saved:</h2>
+
+      <ul>
+      <% @estadistica.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :velocidad %><br>
+    <%= f.text_field :velocidad %>
+  </div>
+  <div class="field">
+    <%= f.label :tiempoVelocidad %><br>
+    <%= f.text_field :tiempoVelocidad %>
+  </div>
+  <div class="field">
+    <%= f.label :velocidadMedia %><br>
+    <%= f.text_field :velocidadMedia %>
+  </div>
+  <div class="field">
+    <%= f.label :velocidadMaxima %><br>
+    <%= f.text_field :velocidadMaxima %>
+  </div>
+  <div class="field">
+    <%= f.label :velocidadMinima %><br>
+    <%= f.text_field :velocidadMinima %>
+  </div>
+  <div class="field">
+    <%= f.label :ruta %><br>
+    <%= f.text_area :ruta %>
+  </div>
+  <div class="field">
+    <%= f.label :cambiosVelocidad %><br>
+    <%= f.text_field :cambiosVelocidad %>
+  </div>
+  <div class="field">
+    <%= f.label :cambiosRpm %><br>
+    <%= f.number_field :cambiosRpm %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

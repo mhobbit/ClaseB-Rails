@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Velocidad:</strong>
+  <%= @estadistica.velocidad %>
+</p>
+
+<p>
+  <strong>Tiempovelocidad:</strong>
+  <%= @estadistica.tiempoVelocidad %>
+</p>
+
+<p>
+  <strong>Velocidadmedia:</strong>
+  <%= @estadistica.velocidadMedia %>
+</p>
+
+<p>
+  <strong>Velocidadmaxima:</strong>
+  <%= @estadistica.velocidadMaxima %>
+</p>
+
+<p>
+  <strong>Velocidadminima:</strong>
+  <%= @estadistica.velocidadMinima %>
+</p>
+
+<p>
+  <strong>Ruta:</strong>
+  <%= @estadistica.ruta %>
+</p>
+
+<p>
+  <strong>Cambiosvelocidad:</strong>
+  <%= @estadistica.cambiosVelocidad %>
+</p>
+
+<p>
+  <strong>Cambiosrpm:</strong>
+  <%= @estadistica.cambiosRpm %>
+</p>
+
+<%= link_to 'Edit', edit_estadistica_path(@estadistica) %> |
+<%= link_to 'Back', estadisticas_path %>
