@@ -69,6 +69,6 @@ class EstadisticasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def estadistica_params
-      params.require(:estadistica).permit(:velocidad, :tiempoVelocidad, :velocidadMedia, :velocidadMaxima, :velocidadMinima, :ruta, :cambiosVelocidad, :cambiosRpm)
+      params.require(:estadistica).permit(:velocidad, :tiempoVelocidad, :velocidadMedia, :velocidadMaxima, :velocidadMinima, :ruta, :cambiosVelocidad, :cambiosRpm, :rut, :tiempoCarril, :tiempoFueraCarril)
     end
 end

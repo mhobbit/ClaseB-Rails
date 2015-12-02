@@ -18,7 +18,7 @@ class EstadisticasControllerTest < ActionController::TestCase
 
   test "should create estadistica" do
     assert_difference('Estadistica.count') do
-      post :create, estadistica: { cambiosRpm: @estadistica.cambiosRpm, cambiosVelocidad: @estadistica.cambiosVelocidad, ruta: @estadistica.ruta, tiempoVelocidad: @estadistica.tiempoVelocidad, velocidad: @estadistica.velocidad, velocidadMaxima: @estadistica.velocidadMaxima, velocidadMedia: @estadistica.velocidadMedia, velocidadMinima: @estadistica.velocidadMinima }
+      post :create, estadistica: { cambiosRpm: @estadistica.cambiosRpm, cambiosVelocidad: @estadistica.cambiosVelocidad, rut: @estadistica.rut, ruta: @estadistica.ruta, tiempoCarril: @estadistica.tiempoCarril, tiempoFueraCarril: @estadistica.tiempoFueraCarril, tiempoVelocidad: @estadistica.tiempoVelocidad, velocidad: @estadistica.velocidad, velocidadMaxima: @estadistica.velocidadMaxima, velocidadMedia: @estadistica.velocidadMedia, velocidadMinima: @estadistica.velocidadMinima }
     end
 
     assert_redirected_to estadistica_path(assigns(:estadistica))
@@ -35,7 +35,7 @@ class EstadisticasControllerTest < ActionController::TestCase
   end
 
   test "should update estadistica" do
-    patch :update, id: @estadistica, estadistica: { cambiosRpm: @estadistica.cambiosRpm, cambiosVelocidad: @estadistica.cambiosVelocidad, ruta: @estadistica.ruta, tiempoVelocidad: @estadistica.tiempoVelocidad, velocidad: @estadistica.velocidad, velocidadMaxima: @estadistica.velocidadMaxima, velocidadMedia: @estadistica.velocidadMedia, velocidadMinima: @estadistica.velocidadMinima }
+    patch :update, id: @estadistica, estadistica: { cambiosRpm: @estadistica.cambiosRpm, cambiosVelocidad: @estadistica.cambiosVelocidad, rut: @estadistica.rut, ruta: @estadistica.ruta, tiempoCarril: @estadistica.tiempoCarril, tiempoFueraCarril: @estadistica.tiempoFueraCarril, tiempoVelocidad: @estadistica.tiempoVelocidad, velocidad: @estadistica.velocidad, velocidadMaxima: @estadistica.velocidadMaxima, velocidadMedia: @estadistica.velocidadMedia, velocidadMinima: @estadistica.velocidadMinima }
     assert_redirected_to estadistica_path(assigns(:estadistica))
   end
 

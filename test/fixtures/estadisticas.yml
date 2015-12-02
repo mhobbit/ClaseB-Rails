@@ -9,6 +9,9 @@ one:
   ruta: MyText
   cambiosVelocidad: 1.5
   cambiosRpm: 1
+  rut: MyString
+  tiempoCarril: 1
+  tiempoFueraCarril: 1
 
 two:
   velocidad: 1.5
@@ -19,3 +22,6 @@ two:
   ruta: MyText
   cambiosVelocidad: 1.5
   cambiosRpm: 1
+  rut: MyString
+  tiempoCarril: 1
+  tiempoFueraCarril: 1
