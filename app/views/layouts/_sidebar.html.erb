@@ -17,15 +17,21 @@
       </a>
       <ul class="treeview-menu">
         <li>
-          <%= link_to root_url do %>
+          <%= link_to estadisticas_path do %>
             <%= content_tag :i, '', :class => "fa fa-circle-o" %>
-            Estadísticas por Alumno
+            Ver Estadísticas
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_estadistica_path do %>
+            <%= content_tag :i, '', :class => "fa fa-circle-o" %>
+            Nueva Estadística
           <% end %>
         </li>
         <li>
           <%= link_to root_url do %>
             <%= content_tag :i, '', :class => "fa fa-circle-o" %>
-            Ver Estadísticas
+            Estadísticas por Alumno
           <% end %>
         </li>
         <li>
