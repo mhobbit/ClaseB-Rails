@@ -1,4 +1,5 @@
 class EstadisticasController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_estadistica, only: [:show, :edit, :update, :destroy]
 
   # GET /estadisticas
