@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  protect_from_forgery except: :new
+  skip_before_action :verify_authenticity_token
   def index
   end
 end
