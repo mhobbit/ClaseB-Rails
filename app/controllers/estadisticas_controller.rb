@@ -1,5 +1,4 @@
 class EstadisticasController < ApplicationController
-  skip_before_action :verify_authenticity_token
   before_action :set_estadistica, only: [:show, :edit, :update, :destroy]
 
   # GET /estadisticas
@@ -35,7 +34,7 @@ class EstadisticasController < ApplicationController
     respond_to do |format|
       if @estadistica.save
         format.html { redirect_to @estadistica, notice: 'Estadistica was successfully created.' }
-        format.json { render :show, status: :created, location: @estadistica }
+        format.json { render :show, status: :created }
       else
         format.html { render :new }
         format.json { render json: @estadistica.errors, status: :unprocessable_entity }
@@ -75,6 +74,6 @@ class EstadisticasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def estadistica_params
-      params.require(:estadistica).permit(:velocidad, :tiempoVelocidad, :velocidadMedia, :velocidadMaxima, :velocidadMinima, :ruta, :cambiosVelocidad, :cambiosRpm, :rut, :tiempoCarril, :tiempoFueraCarril)
+      params.require(:estadistica).permit(:velocidad, :tiempoVelocidad, :velocidadMedia, :velocidadMaxima, :velocidadMinima, :ruta, :cambiosVelocidad, :cambiosRpm, :alumno_id, :tiempoCarril, :tiempoFueraCarril)
     end
 end

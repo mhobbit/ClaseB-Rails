@@ -32,8 +32,8 @@
         </h3>
 
         <div class="box-tools">
-          <form class="input-group input-group-sm" style="width: 150px;">
-            <input type="text" name="rut" class="form-control pull-right" placeholder="Search">
+          <form class="input-group input-group-sm" style="width: 200px;">
+            <input type="text" name="rut" class="form-control pull-right" placeholder="RUT Alumno">
 
             <div class="input-group-btn">
               <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -61,7 +61,7 @@
         <tbody>
           <% @estadisticas.each do |estadistica| %>
             <tr>
-              <td><%= estadistica.rut %></td>
+              <td><%= estadistica.alumno.rut %></td>
               <td><%= estadistica.velocidadMedia %></td>
               <td><%= estadistica.velocidadMaxima %></td>
               <td><%= estadistica.velocidadMinima %></td>
@@ -84,4 +84,3 @@
   </div>
 </div>
 </section><!-- /.content -->
-<%= link_to 'New Estadistica', new_estadistica_path %>

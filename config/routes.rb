@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :alumnos
+  resources :alumnos
   resources :estadisticas
   resources :estadisticas
   resources :estadisticas
