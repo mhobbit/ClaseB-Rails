@@ -6,13 +6,8 @@
   </h1>
   <ol class="breadcrumb">
     <li>
-    <%= link_to root_url, :class => 'logo' do %>
-      <i class="fa fa-dashboard"></i> Dashboard
-    <% end -%>
-    </li>
-    <li>
     <%= link_to estadisticas_path, :class => 'logo' do %>
-      Estadísticas
+      <i class="fa fa-area-chart"></i>Estadísticas
     <% end -%>
     </li>
   </ol>
@@ -61,7 +56,7 @@
         <tbody>
           <% @estadisticas.each do |estadistica| %>
             <tr>
-              <td><%= estadistica.alumno.rut %></td>
+              <td><%= estadistica.alumno ? estadistica.alumno.rut : "N/A" %></td>
               <td><%= estadistica.velocidadMedia %></td>
               <td><%= estadistica.velocidadMaxima %></td>
               <td><%= estadistica.velocidadMinima %></td>

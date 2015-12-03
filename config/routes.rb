@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
 
+  namespace :api do
+    namespace :v1 do
+      resources :estadisticas
+      resources :alumnos
+    end
+  end
+
   resources :alumnos
-  resources :alumnos
-  resources :estadisticas
-  resources :estadisticas
   resources :estadisticas
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -15,6 +19,9 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "/login" => "devise/sessions#new"
   end
+  
+
+  get 'wea' => 'estadisticas#add_wea'
 
 
   # Example of regular route:

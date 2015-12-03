@@ -1,6 +1,13 @@
 class EstadisticasController < ApplicationController
   before_action :set_estadistica, only: [:show, :edit, :update, :destroy]
 
+  def add_wea
+    @estadistica = Estadistica.new
+    @estadistica.alumno_id = 1
+    @estadistica.velocidad = [30, 200, 100, 400, 150, 250]
+    @estadistica.save
+  end
+
   # GET /estadisticas
   # GET /estadisticas.json
   def index

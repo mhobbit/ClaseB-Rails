@@ -1,59 +1,143 @@
-<p id="notice"><%= notice %></p>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Informe de Estadísticas
+    <small>Estadisticas recopiladas tras el uso del simulador</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+    <%= link_to estadisticas_path, :class => 'logo' do %>
+      <i class="fa fa-area-chart"></i>Estadísticas
+    <% end -%>
+    </li>
+    <li>
+    <%= link_to estadisticas_path, :class => 'logo' do %>
+      Informe#<%= @estadistica.id %>
+    <% end -%>
+    </li>
+  </ol>
+</section>
 
-<p>
-  <strong>Velocidad:</strong>
-  <%= @estadistica.velocidad %>
-</p>
+<!-- Main content -->
+<section class="content">
 
-<p>
-  <strong>Tiempovelocidad:</strong>
-  <%= @estadistica.tiempoVelocidad %>
-</p>
 
-<p>
-  <strong>Velocidadmedia:</strong>
-  <%= @estadistica.velocidadMedia %>
-</p>
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Velocidad Promedio</h3>
+      <div class="box-tools pull-right">
+        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+    <div id="chart"></div>
 
-<p>
-  <strong>Velocidadmaxima:</strong>
-  <%= @estadistica.velocidadMaxima %>
-</p>
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+      Footer
+    </div><!-- /.box-footer-->
+  </div><!-- /.box -->
 
-<p>
-  <strong>Velocidadminima:</strong>
-  <%= @estadistica.velocidadMinima %>
-</p>
 
-<p>
-  <strong>Ruta:</strong>
-  <%= @estadistica.ruta %>
-</p>
 
-<p>
-  <strong>Cambiosvelocidad:</strong>
-  <%= @estadistica.cambiosVelocidad %>
-</p>
+  <!-- Default box -->
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Estadisticas para <%= @estadistica.alumno ? @estadistica.alumno.rut : "" %></h3>
+      <div class="box-tools pull-right">
+        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
 
-<p>
-  <strong>Cambiosrpm:</strong>
-  <%= @estadistica.cambiosRpm %>
-</p>
+      <p>
+        <strong>Velocidad:</strong>
+        <%= @estadistica.velocidad %>
+      </p>
 
-<p>
-  <strong>Alumno id:</strong>
-  <%= @estadistica.alumno_id %>
-</p>
+      <p>
+        <strong>Tiempovelocidad:</strong>
+        <%= @estadistica.tiempoVelocidad %>
+      </p>
 
-<p>
-  <strong>Tiempocarril:</strong>
-  <%= @estadistica.tiempoCarril %>
-</p>
+      <p>
+        <strong>Velocidadmedia:</strong>
+        <%= @estadistica.velocidadMedia %>
+      </p>
 
-<p>
-  <strong>Tiempofueracarril:</strong>
-  <%= @estadistica.tiempoFueraCarril %>
-</p>
+      <p>
+        <strong>Velocidadmaxima:</strong>
+        <%= @estadistica.velocidadMaxima %>
+      </p>
+
+      <p>
+        <strong>Velocidadminima:</strong>
+        <%= @estadistica.velocidadMinima %>
+      </p>
+
+      <p>
+        <strong>Ruta:</strong>
+        <%= @estadistica.ruta %>
+      </p>
+
+      <p>
+        <strong>Cambiosvelocidad:</strong>
+        <%= @estadistica.cambiosVelocidad %>
+      </p>
+
+      <p>
+        <strong>Cambiosrpm:</strong>
+        <%= @estadistica.cambiosRpm %>
+      </p>
+
+      <p>
+        <strong>Alumno id:</strong>
+        <%= @estadistica.alumno_id %>
+      </p>
+
+      <p>
+        <strong>Tiempocarril:</strong>
+        <%= @estadistica.tiempoCarril %>
+      </p>
+
+      <p>
+        <strong>Tiempofueracarril:</strong>
+        <%= @estadistica.tiempoFueraCarril %>
+      </p>
+
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+      Footer
+    </div><!-- /.box-footer-->
+  </div><!-- /.box -->
+
+</section><!-- /.content -->
+
+<div id="data" data-vel="<%= @estadistica.velocidad %>" data-tiempo="<%= @estadistica.tiempoVelocidad %>"></div>
 
 <%= link_to 'Edit', edit_estadistica_path(@estadistica) %> |
-<%= link_to 'Back', estadisticas_path %>
+
+
+<% content_for :head do %>
+
+<script type="text/javascript">
+
+$( document ).ready(function() {
+  var vel =  $('#data').data('vel');
+  var tim = $('#data').data('tiempo');
+
+  var chart = c3.generate({
+    bindto: '#chart',
+    data: {
+      columns: [
+        vel,      ]
+    }
+  });
+});
+
+
+
+</script>
+<% end %>
