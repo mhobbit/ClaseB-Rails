@@ -1,0 +1,23 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>Nuevo Mapa
+    <small>Llene todos los datos para crear nuevo mapa</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+    <%= link_to mapas_path do %>
+      <i class="fa fa-map"></i>Mapas
+    <% end -%>
+    </li>
+    <li>
+    <%= link_to new_mapa_path do %>
+      Nuevo Mapa
+    <% end -%>
+    </li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+	<%= render 'form' %>
+</section><!-- /.content -->

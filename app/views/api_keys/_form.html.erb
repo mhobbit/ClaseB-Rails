@@ -1,0 +1,42 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">API Key</h3>
+  </div>
+  <!-- /.box-header -->
+  <!-- form start -->
+  <%= form_for(@api_key, html: { class: "form-horizontal"}) do |f| %>
+    <div class="box-body">
+      <% if @api_key.errors.any? %>
+          <% @api_key.errors.full_messages.each do |message| %>
+            <% flash.now[:alert] =  message %>
+          <% end %>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label "Nombre Simulador", class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label "Llave", class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :key, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label "Descripción", class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+
+    <!-- /.box-footer -->
+  <% end %>
+</div>

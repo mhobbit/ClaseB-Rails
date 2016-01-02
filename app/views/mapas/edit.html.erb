@@ -1,0 +1,29 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>Editar Mapa
+    <small><%= @mapa.id %></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+    <%= link_to mapas_path do %>
+      <i class="fa fa-map"></i>Mapas
+    <% end -%>
+    </li>
+    <li>
+    <%= link_to @mapa do %>
+      Mapa#<%= @mapa.id %>
+    <% end -%>
+    </li>
+    <li>
+    <%= link_to edit_mapa_path(@mapa) do %>
+      Editar Mapa#<%= @mapa.id %>
+    <% end -%>
+    </li>
+
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+	<%= render 'form' %>
+</section><!-- /.content -->

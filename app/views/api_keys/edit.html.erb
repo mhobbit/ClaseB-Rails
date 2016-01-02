@@ -1,0 +1,23 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>Editar Llave API
+    <small>Llene todos los datos para autorizar un nuevo dispositivo con una llave de API.</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+    <%= link_to api_keys_path do %>
+      <i class="fa fa-key"></i>Llaves API
+    <% end -%>
+    </li>
+    <li>
+    <%= link_to edit_api_key_path do %>
+      Editar Llave
+    <% end -%>
+    </li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+	<%= render 'form' %>
+</section><!-- /.content -->

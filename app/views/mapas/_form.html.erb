@@ -1,0 +1,37 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Información Básica</h3>
+  </div>
+  <!-- /.box-header -->
+  <!-- form start -->
+  <%= form_for(@mapa, html: { class: "form-horizontal"}) do |f| %>
+    <div class="box-body">
+      <% if @mapa.errors.any? %>
+          <% @mapa.errors.full_messages.each do |message| %>
+            <% flash.now[:alert] =  message %>
+          <% end %>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :mapa, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_area :mapa, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :currentMap %> Mapa Actual?
+          </label>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+
+    <!-- /.box-footer -->
+  <% end %>
+</div>

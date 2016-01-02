@@ -1,0 +1,53 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    
+    <small></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+    <%= link_to api_keys_path, :class => 'logo' do %>
+      <i class="fa fa-key"></i>Llaves API
+    <% end -%>
+    </li>
+    <li>
+    <%= link_to @api_key, :class => 'logo' do %>
+      Llave#<%= @api_key.id %>
+    <% end -%>
+    </li>
+
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Default box -->
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Llave API #<%= @api_key.id %> </h3>
+      <div class="box-tools pull-right">
+        <%= link_to edit_api_key_path(@api_key.id), :class => 'btn btn-block btn-default' do %>
+           <span class="fa fa-edit" aria-hidden="true"></span> Editar Llave API
+        <% end %>
+      </div>
+    </div>
+    <div class="box-body">
+    <ul>
+      <li>
+        <strong>Nombre Simulador: </strong><%= @api_key.name %>
+      </li>
+      <li>
+        <strong>Llave: </strong><%= @api_key.key %>
+      </li>
+      <li>
+        <strong>Descripción: </strong><%= @api_key.description %>
+      </li>
+    </ul>
+
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+    </div><!-- /.box-footer-->
+  </div><!-- /.box -->
+
+</section><!-- /.content -->

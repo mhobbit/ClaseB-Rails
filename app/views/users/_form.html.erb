@@ -1,0 +1,48 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Información Básica</h3>
+  </div>
+  <!-- /.box-header -->
+  <!-- form start -->
+  <%= form_for(@user, html: { class: "form-horizontal"}) do |f| %>
+    <div class="box-body">
+      <% if @user.errors.any? %>
+          <% @user.errors.full_messages.each do |message| %>
+            <% flash.now[:alert] =  message %>
+          <% end %>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :email, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :role, "Tipo", class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.select :role, options_for_select(User::ROLES), {}, { :class => 'form-control' } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :password, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.password_field :password, class: "form-control" %>
+          <p class="help-block">La contraseña debe tener más de 8 caracteres.</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.password_field :password_confirmation, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+
+    <!-- /.box-footer -->
+  <% end %>
+</div>

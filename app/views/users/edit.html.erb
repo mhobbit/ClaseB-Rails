@@ -1,0 +1,29 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>Editar Usuario
+    <small><%= @user.email %></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+    <%= link_to users_path do %>
+      <i class="fa fa-users"></i>Usuarios
+    <% end -%>
+    </li>
+    <li>
+    <%= link_to @user do %>
+      Usuario#<%= @user.id %>
+    <% end -%>
+    </li>
+    <li>
+    <%= link_to edit_user_path(@user) do %>
+      Editar Usuario#<%= @user.id %>
+    <% end -%>
+    </li>
+
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+	<%= render 'form' %>
+</section><!-- /.content -->
