@@ -1,19 +1,53 @@
-<p id="notice"><%= notice %></p>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    
+    <small></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+    <%= link_to users_path, :class => 'logo' do %>
+      <i class="fa fa-users"></i>Usuarios
+    <% end -%>
+    </li>
+    <li>
+    <%= link_to @user, :class => 'logo' do %>
+      Usuario#<%= @alumno.id %>
+    <% end -%>
+    </li>
 
-<p>
-  <strong>Rut:</strong>
-  <%= @alumno.rut %>
-</p>
+  </ol>
+</section>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @alumno.nombre %>
-</p>
+<!-- Main content -->
+<section class="content">
 
-<p>
-  <strong>Apellido:</strong>
-  <%= @alumno.apellido %>
-</p>
+  <!-- Default box -->
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title"><%= @alumno.rut %> </h3>
+      <div class="box-tools pull-right">
+      	<%= link_to edit_alumno_path(@alumno), :class => 'btn btn-block btn-default' do %>
+      	   <span class="fa fa-edit" aria-hidden="true"></span> Editar Alumno
+      	<% end %>
+      </div>
+    </div>
+    <div class="box-body">
+    <ul>
+    	<li>
+    		<strong>Rut: </strong><%= @alumno.rut %>
+    	</li>
+    	<li>
+    		<strong>Nombre: </strong><%= @alumno.nombre %>
+    	</li>
+    	<li>
+    		<strong>Apellido: </strong><%= @alumno.apellido %>
+    	</li>
+    </ul>
 
-<%= link_to 'Edit', edit_alumno_path(@alumno) %> |
-<%= link_to 'Back', alumnos_path %>
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+    </div><!-- /.box-footer-->
+  </div><!-- /.box -->
+
+</section><!-- /.content -->

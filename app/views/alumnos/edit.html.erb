@@ -1,6 +1,29 @@
-<h1>Editing Alumno</h1>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>Editar Alumno
+    <small><%= @alumno.rut %></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+    <%= link_to alumnos_path do %>
+      <i class="fa fa-graduation-cap"></i>Alumnos
+    <% end -%>
+    </li>
+    <li>
+    <%= link_to @user do %>
+      Alumno#<%= @alumno.id %>
+    <% end -%>
+    </li>
+    <li>
+    <%= link_to edit_alumno_path(@alumno) do %>
+      Editar Usuario#<%= @alumno.id %>
+    <% end -%>
+    </li>
 
-<%= render 'form' %>
+  </ol>
+</section>
 
-<%= link_to 'Show', @alumno %> |
-<%= link_to 'Back', alumnos_path %>
+<!-- Main content -->
+<section class="content">
+	<%= render 'form' %>
+</section><!-- /.content -->

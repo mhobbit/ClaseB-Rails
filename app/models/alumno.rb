@@ -10,5 +10,4 @@ class Alumno < ActiveRecord::Base
      end
     #Alumno.where("rut like ?", "%#{query}%")
   end
-
 end

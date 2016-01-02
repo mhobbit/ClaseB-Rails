@@ -1,28 +1,35 @@
 Rails.application.routes.draw do
 
-  namespace :api do
+  resources :api_keys
+  resources :mapas
+  resources :mapas
+  resources :mapas
+  namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :estadisticas
       resources :alumnos
+      get "mapa" => "mapas#show"
     end
+    namespace :v2 do
+      post "estadisticas" => "estadisticas#create"
+      post "alumnos" => "alumnos#create"
+      get "mapa" => "mapas#show"
+    end
+
   end
 
   resources :alumnos
   resources :estadisticas
-  devise_for :users
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
   root 'dashboard#index'
 
+  devise_for :users
   devise_scope :user do
     get "/login" => "devise/sessions#new"
   end
+
+  resources :users
   
-
-  get 'wea' => 'estadisticas#add_wea'
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -2,7 +2,7 @@
 <section class="content-header">
   <h1>
     Estadísticas
-    <small>advanced tables</small>
+    <small>todas las estadísticas</small>
   </h1>
   <ol class="breadcrumb">
     <li>
@@ -43,13 +43,13 @@
         <thead>
           <tr>
             <th>Rut Alumno</th>
-            <th>Velocidadmedia</th>
-            <th>Velocidadmaxima</th>
-            <th>Velocidadminima</th>
+            <th>Velocidad media</th>
+            <th>Velocidad máxima</th>
+            <th>Velocidad mínima</th>
             <th>Ruta</th>
-            <th>Tiempocarril</th>
-            <th>Tiempofueracarril</th>
-            <th colspan="3"></th>
+            <th>Tiempo dentro del carril</th>
+            <th>Tiempo fuera del carril</th>
+            <th></th>
           </tr>
         </thead>
 
@@ -60,18 +60,27 @@
               <td><%= estadistica.velocidadMedia %></td>
               <td><%= estadistica.velocidadMaxima %></td>
               <td><%= estadistica.velocidadMinima %></td>
-              <td><%= estadistica.ruta %></td>
+              <td>
+                <% if estadistica.ruta %> 
+                  <i class="fa fa-check"></i>
+                <% else %>
+                  <i class="fa fa-times"></i>
+                <% end %>
+              </td>
               <td><%= estadistica.tiempoCarril %></td>
               <td><%= estadistica.tiempoFueraCarril %></td>
-              <td><%= link_to 'Mostrar', estadistica, class: "btn btn-xs btn-primary" %></td>
-              <td><%= link_to 'Editar', edit_estadistica_path(estadistica), class: "btn btn-xs btn-warning" %></td>
-              <td><%= link_to 'Eliminar', estadistica, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
+              <td><div class="btn-group">               
+                <% if can? :show, Estadistica %><%= link_to 'Mostrar', estadistica, class: "btn btn-xs btn-default" %><% end %>
+                <% if can? :edit, Estadistica %><%= link_to 'Editar', edit_estadistica_path(estadistica), class: "btn btn-xs btn-default" %><% end %>
+                <% if can? :delete, Estadistica %><%= link_to 'Eliminar', estadistica, method: :delete, data: { confirm: '¿Seguro que desea eliminar este usuario?' }, class: "btn btn-xs btn-danger" %><% end %>
+              </div></td>
             </tr>
           <% end %>
         </tbody>
       </table>
-
-
+      <div class="box-footer clearfix">
+        <%= paginate @estadisticas %>
+      </div>
       </div>
       <!-- /.box-body -->
     </div>
