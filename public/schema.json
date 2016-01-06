@@ -1,0 +1,42 @@
+{
+  "title": "Mapa",
+  "type": "object",
+  "properties": {
+    "segmentos": {
+      "type": "array",
+      "title": "Segmentos",
+      "items": {
+        "type": "object",
+        "title": "Segmento",
+        "properties": {
+          "type": {
+            "title":"Tipo de Camino",
+            "type": "string",
+            "enum": [
+              "Recto",
+              "Cruce"
+            ],
+            "default": "Recto"
+          },
+          "señales":{
+            "title":"Señales en el camino",
+            "type":"array",
+            "uniqueItems": true,
+            "format":"table",
+            "items":{
+              "type": "string",
+              "enum":[
+                "Pare",
+                "Seda el Paso",
+                "No Virar Derecha",
+                "No Virar Izquierda",
+                "Dirección Obligada Izquierda"
+              ]
+            }
+
+          }
+        }
+      }
+    }
+  }
+}

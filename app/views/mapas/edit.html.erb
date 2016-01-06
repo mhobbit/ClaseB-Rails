@@ -10,20 +10,73 @@
     <% end -%>
     </li>
     <li>
-    <%= link_to @mapa do %>
-      Mapa#<%= @mapa.id %>
-    <% end -%>
-    </li>
-    <li>
     <%= link_to edit_mapa_path(@mapa) do %>
-      Editar Mapa#<%= @mapa.id %>
+      Editar Mapa
     <% end -%>
     </li>
 
   </ol>
 </section>
 
+
+<% content_for :head do %>
+  <%= javascript_include_tag "jsoneditor.js" %>
+<% end %>
+
 <!-- Main content -->
 <section class="content">
-	<%= render 'form' %>
+
+  <!-- Default box -->
+  <div class="box">
+    <div class="box-body">
+      <div id='editor_holder'></div>
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+      <button id='submit' class="btn btn-primary">Enviar Mapa</button>
+    </div><!-- /.box-footer-->
+  </div><!-- /.box -->
 </section><!-- /.content -->
+
+ <%= content_tag :div, id: 'current-json', data: {json: @mapa.mapa} do %>
+ <% end %>
+
+
+
+<script>
+  var currentMap = ($('#current-json').data('json'));
+  var editor;
+
+  $.getJSON('/schema.json', function(jsonSchema) {
+    editor = new JSONEditor(document.getElementById('editor_holder'),{
+      theme: 'bootstrap3',
+      disable_edit_json: true,
+      disable_collapse: true,
+      disable_properties: true,
+      no_additional_properties: true,
+      language : "es",
+      schema: jsonSchema
+    });
+    editor.setValue(currentMap);
+  });
+
+  // Initialize the editor with a JSON schema
+  
+  // Hook up the submit button to log to the console
+  document.getElementById('submit').addEventListener('click',function() {
+    // Get the value from the editor
+    var json = editor.getValue();
+    var mapa = {mapa: {mapa: JSON.stringify(json), currentMap: 1}};
+
+    $.ajax({
+      url: "/mapas",
+      type: "POST",
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr("content"))},
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      data: JSON.stringify(mapa),
+      success: function(data) { alert("El Mapa fue guardado correctamente") },
+      error: function(ts) { alert(ts.responseText) }
+
+    })
+  });
+</script>

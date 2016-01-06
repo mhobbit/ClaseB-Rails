@@ -14,7 +14,7 @@ class MapasController < ApplicationController
 
   # GET /mapas/new
   def new
-    @mapa = Mapa.new
+    @mapa = Mapa.last
   end
 
   # GET /mapas/1/edit
