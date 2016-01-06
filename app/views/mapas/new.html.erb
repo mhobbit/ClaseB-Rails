@@ -34,7 +34,7 @@
     </div><!-- /.box-footer-->
   </div><!-- /.box -->
 </section><!-- /.content -->
-<% if @mapa.mapa
+<% if @mapa.mapa %>
  <%= content_tag :div, id: 'current-json', data: {json: @mapa.mapa} do %>
  <% end %>
 <% end %>
