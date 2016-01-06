@@ -33,7 +33,16 @@
                 "Dirección Obligada Izquierda"
               ]
             }
-
+          },
+          "direccion": {
+            "title":"Dirección Obligada",
+            "type": "string",
+            "enum": [
+              "Derecha",
+              "Izquierda",
+              "Adelante"
+            ],
+            "default": "Recto"
           }
         }
       }
