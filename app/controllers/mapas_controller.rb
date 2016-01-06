@@ -14,9 +14,9 @@ class MapasController < ApplicationController
 
   # GET /mapas/new
   def new
-    @mapa = Mapa.new
-    if Mapa.last
-      @mapa = Mapa.last
+    @mapa = Mapa.last
+    unless 
+      @mapa = Mapa.new
     end
   end
 

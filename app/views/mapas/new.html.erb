@@ -1,7 +1,11 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "jsoneditor.js" %>
+<% end %>
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
-  <h1>Editar Mapa
-    <small><%= @mapa.id %></small>
+  <h1>Nuevo Mapa
+    <small>Llene todos los datos para crear nuevo mapa</small>
   </h1>
   <ol class="breadcrumb">
     <li>
@@ -10,18 +14,12 @@
     <% end -%>
     </li>
     <li>
-    <%= link_to edit_mapa_path(@mapa) do %>
-      Editar Mapa
+    <%= link_to new_mapa_path do %>
+      Nuevo Mapa
     <% end -%>
     </li>
-
   </ol>
 </section>
-
-
-<% content_for :head do %>
-  <%= javascript_include_tag "jsoneditor.js" %>
-<% end %>
 
 <!-- Main content -->
 <section class="content">
