@@ -17,6 +17,7 @@ class MapasController < ApplicationController
     @mapa = Mapa.last
     unless @mapa
       @mapa = Mapa.new
+    end
   end
 
   # GET /mapas/1/edit
