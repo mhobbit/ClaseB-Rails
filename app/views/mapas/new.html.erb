@@ -1,11 +1,7 @@
-<% content_for :head do %>
-  <%= javascript_include_tag "jsoneditor.js" %>
-<% end %>
-
 <!-- Content Header (Page header) -->
 <section class="content-header">
-  <h1>Nuevo Mapa
-    <small>Llene todos los datos para crear nuevo mapa</small>
+  <h1>Editar Mapa
+    <small><%= @mapa.id %></small>
   </h1>
   <ol class="breadcrumb">
     <li>
@@ -15,11 +11,16 @@
     </li>
     <li>
     <%= link_to new_mapa_path do %>
-      Nuevo Mapa
+      Modificar Mapa
     <% end -%>
     </li>
   </ol>
 </section>
+
+
+<% content_for :head do %>
+  <%= javascript_include_tag "jsoneditor.js" %>
+<% end %>
 
 <!-- Main content -->
 <section class="content">
@@ -34,10 +35,9 @@
     </div><!-- /.box-footer-->
   </div><!-- /.box -->
 </section><!-- /.content -->
-<% if @mapa.mapa %>
+
  <%= content_tag :div, id: 'current-json', data: {json: @mapa.mapa} do %>
  <% end %>
-<% end %>
 
 
 
@@ -55,7 +55,8 @@
       language : "es",
       schema: jsonSchema
     });
-    editor.setValue(currentMap);
+    if (currentMap)
+      editor.setValue(currentMap);
   });
 
   // Initialize the editor with a JSON schema
