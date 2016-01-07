@@ -259,8 +259,8 @@ $( document ).ready(function() {
   });
 
   //Grafico velocidad maxima
-  var velocidadMedia =  $('#data').data('velocidadmedia');
-  var velocidadMaxima = $('#data').data('velocidadmaxima');
+  var velocidadMedia =  Math.round($('#data').data('velocidadmedia'));
+  var velocidadMaxima = Math.round($('#data').data('velocidadmaxima'));
 
   var velocidadChart = c3.generate({
     bindto: '#velocidad-media',
