@@ -2,7 +2,7 @@
 <section class="content-header">
   <h1>
     Informe de Estadísticas
-    <small>Estadisticas recopiladas tras el uso del simulador</small>
+    <small>Estadisticas para <%= @estadistica.alumno ? @estadistica.alumno.rut : "" %></small>
   </h1>
   <ol class="breadcrumb">
     <li>
@@ -22,26 +22,80 @@
 <section class="content">
 
 
-  <div class="box">
+  <div class="box box-info">
     <div class="box-header with-border">
-      <h3 class="box-title">Velocidad Promedio</h3>
+      <h3 class="box-title">Información del Alumno</h3>
       <div class="box-tools pull-right">
         <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
         <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
       </div>
     </div>
     <div class="box-body">
-    <div id="chart"></div>
-
+      <dl class="dl-horizontal left-block">
+        <dt>RUT</dt>
+        <dd><%= @estadistica.alumno ? @estadistica.alumno.rut : "" %></dd>
+        <dt>Nombre</dt>
+        <dd><%= @estadistica.alumno ? @estadistica.alumno.nombre : "______________________________________________________________" %></dd>
+        <dt>Apellido</dt>
+        <dd><%= @estadistica.alumno ? @estadistica.alumno.apellido : "______________________________________________________________" %></dd>
+      </dl>
     </div><!-- /.box-body -->
     <div class="box-footer">
-      Footer
     </div><!-- /.box-footer-->
   </div><!-- /.box -->
 
+  <div class="box box-success ">
+    <div class="box-header with-border">
+      <h3 class="box-title">Gráfico Velocidad Promedio</h3>
+      <div class="box-tools pull-right">
+        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+      <div id="chart"></div>
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+      Gráfico Velocidad/Tiempo para analizar el comportamiento del alumno en el transcurso de la simulación.
+    </div><!-- /.box-footer-->
+  </div><!-- /.box -->
+
+  <div class="box box-danger">
+    <div class="box-header with-border">
+      <h3 class="box-title"></h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+      <div class="col-md-4"> 
+        <h3 class="text-center">Tiempo en Pista</h3>
+        <p class="text-justify"><small>Muestra el porcentaje de tiempo en el cual el alumno se mantiene dentro de la pista en el transcurso de la simulación.</small></p>
+        <div id="tiempo-en-carril"></div>
+      </div>
+      <div class="col-md-4"> 
+        <h3 class="text-center">Velocidad Media</h3>
+        <p class="text-justify"><small>Se muestra la velocidad media del alumno entre 0 y la velocidad máxima en el transcurso de la simulación.</small></p>
+        <div class="center-block" id="velocidad-media"></div>
+      </div>
+      <div class="col-md-4"> 
+        <h3 class="text-center">Cambios</h3>
+        <p class="text-justify"><small>Se visualiza la velocidad promedio y las RPM para cada uno de los cambios de marcha realizados en el transcurso de la simulación.</small></p>
+        <div class="center-block" id="velocidad-cambios"></div>
+      </div>
+    </div>
+    <!-- /.box-body -->
+        <div class="box-footer">
+    </div><!-- /.box-footer-->
+
+  </div>
 
 
-  <!-- Default box -->
+
+  <!-- 
   <div class="box">
     <div class="box-header with-border">
       <h3 class="box-title">Estadisticas para <%= @estadistica.alumno ? @estadistica.alumno.rut : "" %></h3>
@@ -107,17 +161,43 @@
         <%= @estadistica.tiempoFueraCarril %>
       </p>
 
-    </div><!-- /.box-body -->
+    </div>
     <div class="box-footer">
       Footer
-    </div><!-- /.box-footer-->
-  </div><!-- /.box -->
+    </div>
+  </div>-->
+
+
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Información por Segmentos</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body no-padding">
+      <table id="records_table" class="table table-striped">
+        <tbody><tr>
+          <th style="width: 10px">#</th>
+          <th>Tipo</th>
+          <th>Señales</th>
+          <th>Intentos</th>
+        </tr>
+      </tbody></table>
+    </div>
+    <!-- /.box-body -->
+  </div>
 
 </section><!-- /.content -->
 
-<div id="data" data-vel="<%= @estadistica.velocidad %>" data-tiempo="<%= @estadistica.tiempoVelocidad %>"></div>
-
-<%= link_to 'Edit', edit_estadistica_path(@estadistica) %> |
+ <%= content_tag :div, id: 'data',
+  data: {vel: @estadistica.velocidad, 
+    tiempo: @estadistica.tiempoVelocidad,
+    carril: @estadistica.tiempoCarril,
+    fueracarril: @estadistica.tiempoFueraCarril,
+    velocidadmaxima: @estadistica.velocidadMaxima,
+    velocidadmedia: @estadistica.velocidadMedia,
+    velocidadcambios: @estadistica.cambiosVelocidad
+    }  do %>
+    <% end %>
 
 
 <% content_for :head do %>
@@ -125,16 +205,139 @@
 <script type="text/javascript">
 
 $( document ).ready(function() {
+  //Grafico vel-tiempo
   var vel =  $('#data').data('vel');
   var tim = $('#data').data('tiempo');
 
-  var chart = c3.generate({
+  var velChart = c3.generate({
     bindto: '#chart',
     data: {
+      x: 'Tiempo',
       columns: [
-        vel,      ]
+        ['Velocidad'].concat(vel),
+        ['Tiempo'].concat(tim) 
+        ],
+      type: 'spline'
+    },
+    axis: {
+      y: {
+        label: 'Velocidad [Km/h]'
+      },
+      x: {
+        label: 'Tiempo [s]'
+      }
+    },
+    legend: {
+      position: 'inset'
     }
   });
+  //Grafico Pie tiempo carril
+  var dentro =  $('#data').data('carril');
+  var fuera = $('#data').data('fueracarril');
+
+  var carrilChart = c3.generate({
+    bindto: '#tiempo-en-carril',
+    size: {
+      height: 200
+    },
+    data: {
+      columns: [
+          ['Dentro de la Pista', dentro],
+          ['Fuera de la Pista', fuera],
+      ],
+      type : 'donut'
+    },
+    donut: {
+      units: ' s',
+      label: {
+          format: function (value, ratio, id) {
+              return d3.format('')(value);
+          }
+        },
+        width: 39
+    }
+  });
+
+  //Grafico velocidad maxima
+  var velocidadMedia =  $('#data').data('velocidadmedia');
+  var velocidadMaxima = $('#data').data('velocidadmaxima');
+
+  var velocidadChart = c3.generate({
+    bindto: '#velocidad-media',
+    data: {
+      columns: [
+          ['Velocidad Media', velocidadMedia],
+      ],
+      type : 'gauge'
+    },
+    gauge: {
+      label: {
+          format: function(value, ratio) {
+              return value;
+          },
+          show: true // to turn off the min/max labels.
+      },
+      min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+      max: velocidadMaxima, // 100 is default
+      units: 'Km/h',
+      width: 39 // for adjusting arc thickness
+    }
+  });
+
+  //Grafico velocidad cambios
+  //var velocidadCambios =  $('#data').data('velocidadcambios');
+  var velocidadCambios =  [10,20,30,40,50,60];
+  var rpmCambios =  [2343,3987,1098,2709,3270,2840];
+
+  var gearChart = c3.generate({
+      bindto: '#velocidad-cambios',
+      data: {
+          columns: [
+            ['Velocidad'].concat(velocidadCambios),
+            //['RPM'].concat(rpmCambios.map(function(rpm){
+            //  return rpm/1000;
+            //}))
+            ['RPM'].concat(rpmCambios)
+          ],
+          type: 'bar',
+          axes: {
+              Velocidad: 'y',
+              RPM: 'y2'
+          }
+      },
+
+      bar: {
+          width: {
+              ratio: 0.5 // this makes bar width 50% of length between ticks
+          }
+          // or
+          //width: 100 // this makes bar width 100px
+      },
+      axis: {
+        x: {
+          show: true
+        },
+        y: {
+          show: false
+        },
+        y2:{
+          show:false
+        }
+      },
+      size: {
+        height: 180
+      }
+
+  });
+  //Tabla con intento por segmento, con json ruta
+  var jsonData = '[{"tipo":"Recto","senales": ["asdf", "lol"],"intentos":"5"},{"tipo":"Cruce","senales":["asdf", "lol"],"intentos":"6"}]';
+
+  var json = JSON.parse(jsonData);
+  var trHTML = '';
+  $.each(json, function (i, item) {
+    trHTML += '<tr><td>' +i +'</td><td>'+ item.tipo + '</td><td>' + item.senales + '</td><td>' + item.intentos + '</td></tr>';
+  });
+  $('#records_table').append(trHTML);
 });
 
 

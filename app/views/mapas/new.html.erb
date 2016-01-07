@@ -42,12 +42,14 @@
 
 
 <script>
+
   var currentMap = ($('#current-json').data('json'));
   var editor;
 
   $.getJSON('/schema.json', function(jsonSchema) {
     editor = new JSONEditor(document.getElementById('editor_holder'),{
       theme: 'bootstrap3',
+      iconlib: "fontawesome4",
       disable_edit_json: true,
       disable_collapse: true,
       disable_properties: true,

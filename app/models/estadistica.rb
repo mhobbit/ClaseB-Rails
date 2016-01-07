@@ -3,7 +3,7 @@ class Estadistica < ActiveRecord::Base
 
   def self.search(query)
      a = Alumno.where(:rut => query.to_s)
-     unless a.nil?
+     unless a.empty?
      	a.first.estadisticas
      else
      	[]

@@ -97,7 +97,7 @@
     <% end %>
     <% if can? :manage, Mapa %>
     <li>
-      <%= link_to mapas_path do %>
+      <%= link_to new_mapa_path do %>
         <%= content_tag :i, '', :class => "fa fa-road" %>
         Editar Mapa
       <% end %>

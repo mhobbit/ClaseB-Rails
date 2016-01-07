@@ -12,7 +12,6 @@ class EstadisticasController < ApplicationController
       page = 1
     end 
 
-
     if @rut
       @estadisticas = Estadistica.search(@rut)
     else
