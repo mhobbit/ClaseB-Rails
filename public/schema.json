@@ -18,7 +18,7 @@
             ],
             "default": "Recto"
           },
-          "señales":{
+          "senales":{
             "title":"Señales en el camino",
             "type":"array",
             "uniqueItems": true,
