@@ -3767,7 +3767,7 @@ JSONEditor.defaults.editors.array = JSONEditor.AbstractEditor.extend({
     });
     self.controls.appendChild(this.add_row_button);
 
-    this.delete_last_row_button = this.getButton('Last '+this.getItemTitle(),'delete','Borrar Último '+this.getItemTitle());
+    this.delete_last_row_button = this.getButton('Último '+this.getItemTitle(),'delete','Borrar Último '+this.getItemTitle());
     this.delete_last_row_button.addEventListener('click',function(e) {
       e.preventDefault();
       e.stopPropagation();

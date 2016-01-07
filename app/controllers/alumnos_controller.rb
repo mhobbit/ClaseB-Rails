@@ -5,7 +5,12 @@ class AlumnosController < ApplicationController
   # GET /alumnos
   # GET /alumnos.json
   def index
-    @alumnos = Alumno.all
+    @rut = params[:rut]
+    if @rut
+      @alumnos = Alumno.search(@rut)
+    else
+      @alumnos = Alumno.all
+    end
   end
 
   # GET /alumnos/1

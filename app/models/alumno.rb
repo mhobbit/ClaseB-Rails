@@ -2,11 +2,11 @@ class Alumno < ActiveRecord::Base
 	has_many :estadisticas
 
   def self.search(query)
-     a = Alumno.where(:rut => query.to_s)
-     unless a.nil?
-      a.first
+     a = Alumno.where("rut LIKE ?", "%#{query}%")
+     unless a.empty?
+      a
      else
-      nil
+      []
      end
     #Alumno.where("rut like ?", "%#{query}%")
   end

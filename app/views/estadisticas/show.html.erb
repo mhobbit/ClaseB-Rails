@@ -201,6 +201,14 @@
 
 
 <% content_for :head do %>
+<style type="text/css">
+@media print{
+  body{ background-color:#FFFFFF; background-image:none; color:#000000 }
+  #main-header{ display:none;}
+  #main-sidebar{ display:none;}
+  #content-wrapper{ width:100%; padding-left: 0;}
+}
+</style>
 
 <script type="text/javascript">
 

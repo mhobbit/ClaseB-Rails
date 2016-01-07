@@ -35,7 +35,7 @@
             }
           },
           "direccion": {
-            "title":"Dirección Obligada",
+            "title":"Dirección",
             "type": "string",
             "enum": [
               "Derecha",
