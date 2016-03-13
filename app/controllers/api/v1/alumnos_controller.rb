@@ -29,14 +29,15 @@ module Api
       def create
         @alumno = Alumno.search(params[:rut])
 
-        if @alumno
-          respond_with @alumno
+        unless @alumno.empty?
+          respond_with @alumno.first
 
         else
           @alumno = Alumno.new(alumno_params)
 
           if @alumno.save
-            respond_with @alumno
+            @alumno = Alumno.search(params[:rut])
+            respond_with @alumno.first
           else
             render json: @alumno.errors, status: :unprocessable_entity
           end
