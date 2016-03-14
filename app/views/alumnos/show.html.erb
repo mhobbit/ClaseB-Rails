@@ -1,8 +1,8 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    
-    <small></small>
+    Información Alumno RUT: <%= @alumno.rut %>
+    <small>Información y estadísticas para el alumno</small>
   </h1>
   <ol class="breadcrumb">
     <li>
@@ -21,33 +21,83 @@
 
 <!-- Main content -->
 <section class="content">
-
-  <!-- Default box -->
-  <div class="box">
+    <div class="box box-info">
     <div class="box-header with-border">
-      <h3 class="box-title"><%= @alumno.rut %> </h3>
+      <h3 class="box-title">Información General</h3>
       <div class="box-tools pull-right">
-      	<%= link_to edit_alumno_path(@alumno), :class => 'btn btn-block btn-default' do %>
-      	   <span class="fa fa-edit" aria-hidden="true"></span> Editar Alumno
-      	<% end %>
+        <%= link_to edit_alumno_path(@alumno), :class => 'btn btn-block btn-default' do %>
+           <span class="fa fa-edit" aria-hidden="true"></span> Editar Información
+        <% end %>
       </div>
     </div>
     <div class="box-body">
-    <ul>
-    	<li>
-    		<strong>Rut: </strong><%= @alumno.rut %>
-    	</li>
-    	<li>
-    		<strong>Nombre: </strong><%= @alumno.nombre %>
-    	</li>
-    	<li>
-    		<strong>Apellido: </strong><%= @alumno.apellido %>
-    	</li>
-    </ul>
-
+      <dl class="dl-horizontal left-block">
+        <dt>RUT</dt>
+        <dd><%= @alumno.rut ? @alumno.rut : "" %></dd>
+        <dt>Nombre</dt>
+        <dd><%= @alumno.nombre ? @alumno.nombre : "" %></dd>
+        <dt>Apellido</dt>
+        <dd><%= @alumno.apellido ? @alumno.apellido : "" %></dd>
+      </dl>
     </div><!-- /.box-body -->
     <div class="box-footer">
     </div><!-- /.box-footer-->
   </div><!-- /.box -->
+
+  <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">
+            Estadisticas para RUT: <%= @alumno.rut %>
+        </h3>
+
+        <div class="box-tools">
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Rut Alumno</th>
+            <th>Velocidad media</th>
+            <th>Velocidad máxima</th>
+            <th>Velocidad mínima</th>
+            <th>Ruta</th>
+            <th>Tiempo dentro del carril</th>
+            <th>Tiempo fuera del carril</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @alumno.estadisticas.each do |estadistica| %>
+            <tr>
+              <td><%= estadistica.alumno ? estadistica.alumno.rut : "N/A" %></td>
+              <td><%= estadistica.velocidadMedia %></td>
+              <td><%= estadistica.velocidadMaxima %></td>
+              <td><%= estadistica.velocidadMinima %></td>
+              <td>
+                <% if estadistica.ruta %> 
+                  <i class="fa fa-check"></i>
+                <% else %>
+                  <i class="fa fa-times"></i>
+                <% end %>
+              </td>
+              <td><%= estadistica.tiempoCarril %></td>
+              <td><%= estadistica.tiempoFueraCarril %></td>
+              <td><div class="btn-group">               
+                <% if can? :show, Estadistica %><%= link_to 'Mostrar', estadistica, class: "btn btn-xs btn-default" %><% end %>
+                <% if can? :delete, Estadistica %><%= link_to 'Eliminar', estadistica, method: :delete, data: { confirm: '¿Seguro que desea eliminar este usuario?' }, class: "btn btn-xs btn-danger" %><% end %>
+              </div></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="box-footer clearfix">
+      </div>
+      </div>
+      <!-- /.box-body -->
+    </div>
 
 </section><!-- /.content -->

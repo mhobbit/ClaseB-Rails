@@ -71,7 +71,6 @@
               <td><%= estadistica.tiempoFueraCarril %></td>
               <td><div class="btn-group">               
                 <% if can? :show, Estadistica %><%= link_to 'Mostrar', estadistica, class: "btn btn-xs btn-default" %><% end %>
-                <% if can? :edit, Estadistica %><%= link_to 'Editar', edit_estadistica_path(estadistica), class: "btn btn-xs btn-default" %><% end %>
                 <% if can? :delete, Estadistica %><%= link_to 'Eliminar', estadistica, method: :delete, data: { confirm: '¿Seguro que desea eliminar este usuario?' }, class: "btn btn-xs btn-danger" %><% end %>
               </div></td>
             </tr>
