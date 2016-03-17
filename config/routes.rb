@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :estadisticas
       resources :alumnos
+      get "mapa" => "mapas#show"
     end
     namespace :v2 do
       resources :estadisticas
